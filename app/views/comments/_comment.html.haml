@@ -1,0 +1,13 @@
+%p
+  %strong Author
+  = comment.author
+
+%p
+  %strong Comment
+  = comment.body
+  %hr/
+
+%p
+  = link_to 'Delete', [comment.article, comment],
+                      method: :delete,
+                      data: { confirm: 'Are you sure?' }

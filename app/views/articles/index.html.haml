@@ -1,0 +1,15 @@
+= link_to 'New Post', new_article_path
+
+%h1 Articles on blog:
+%div
+  - @articles.each do |article|
+    %h3= link_to article.title, article_path(article)
+    %small
+      = link_to 'Edit', edit_article_path(article) | 
+      #{link_to 'Delete', article_path(article), method: :delete}
+    %p= article.body
+    %hr/
+
+
+= link_to 'New Post', new_article_path
+
