@@ -6,4 +6,15 @@
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
   %body
-    = yield
+    .container
+      .header
+        %h2.header-heading= link_to "The Crud App", root_path
+      .nav-bar
+        %ul.nav
+          %li= link_to 'add new post', new_article_path
+          %li= link_to "about", pages_about_path
+      .content
+        .main
+          = yield
+      .footer
+        %p &copy; Copyright by me in August 2015

@@ -1,14 +1,24 @@
 %p
-  %strong Title
-  = @article.title
+  %strong= @article.title
+  %small
+    = link_to 'Edit', edit_article_path(@article)
+    = link_to '| Delete', article_path(@article), method: :delete, data: { confirm: 'Are you sure?' }
+    = link_to '| Home', root_path
+  %br
+  %small
+    Posted
+    = @article.created_at
 %p
   = @article.body
 
-= link_to 'Edit', edit_article_path(@article) |
-= link_to 'Back home', articles_path
+%hr
 
 %h2 Comments:
-= render @article.comments
+- if @article.comments.empty?
+  %p No comments yet.
+- else
+  = render @article.comments
+%hr
 
-%h2 Add comment
+%h2 Add new comment
 = render 'comments/form'
