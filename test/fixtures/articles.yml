@@ -1,9 +1,9 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  title: MyString
-  body: MyText
+  title: "Hello"
+  body: "Hello. This is the first post on this blog."
 
 two:
-  title: MyString
-  body: MyText
+  title: "Fight Club movie"
+  body: "Today we are talking about Fiht Club movie with Brad Pitt."
