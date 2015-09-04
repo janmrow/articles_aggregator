@@ -2,7 +2,7 @@ require 'test_helper'
 
 class ArticlesControllerTest < ActionController::TestCase
 
-  test "should get home page and render correct template" do
+  test "should get home page, render correct template" do
     get :index
     assert_response :success
     assert_template :index
@@ -25,17 +25,30 @@ class ArticlesControllerTest < ActionController::TestCase
 
   end
 
-  test "should create article" do
+  test "should create article and redirect to article path" do
     assert_difference('Article.count') do
-      post :create, article: {title: "Test", body: "Test article."}
+      post :create, article: { title: "Test", body: "Test article." }
     end
     assert_redirected_to article_path(assigns(:article))
   end
 
-  test "should delete article" do
+  test "should delete article and redirect to root" do
     assert_difference ['Article.count'], -1 do
-      delete :destroy, id: articles(:one)
+      delete :destroy, id: articles(:one).id
+      assert_redirected_to root_path
     end
+  end
+
+  test "should update article and redirect to article path" do
+    article = articles(:one)
+    new_title = "This is new title"
+    new_body = "And this is new body"
+
+    patch :update, id: article.id, article: { title: new_title, body: new_body }
+
+    assert_equal assigns(:article).title, new_title
+    assert_equal assigns(:article).body, new_body
+    assert_redirected_to article_path(assigns(:article))
   end
 
 end
