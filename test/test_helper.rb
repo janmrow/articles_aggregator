@@ -3,8 +3,9 @@ require File.expand_path('../../config/environment', __FILE__)
 require 'rails/test_help'
 
 class ActiveSupport::TestCase
-  # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
   fixtures :all
 
-  # Add more helper methods to be used by all tests here...
+  def authenticate_with_http_basic(user = 'admin', password = 'admin')
+    @request.env['HTTP_AUTHORIZATION'] = "Basic #{Base64.encode64("#{user}:#{password}")}"
+  end
 end

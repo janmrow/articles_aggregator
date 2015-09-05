@@ -11,6 +11,7 @@ class ArticlesControllerTest < ActionController::TestCase
   end
 
   test "should get new and render correct template" do
+    authenticate_with_http_basic
     get :new
     assert_response :success
     assert_template :new
@@ -18,6 +19,7 @@ class ArticlesControllerTest < ActionController::TestCase
   end
 
   test "edit should render correct template" do
+    authenticate_with_http_basic
     get :edit, id: articles(:one)
     assert_response :success
     assert_template :edit
@@ -26,6 +28,7 @@ class ArticlesControllerTest < ActionController::TestCase
   end
 
   test "should create article and redirect to article path" do
+    authenticate_with_http_basic
     assert_difference('Article.count') do
       post :create, article: { title: "Test", body: "Test article." }
     end
@@ -33,6 +36,7 @@ class ArticlesControllerTest < ActionController::TestCase
   end
 
   test "should delete article and redirect to root" do
+    authenticate_with_http_basic
     assert_difference ['Article.count'], -1 do
       delete :destroy, id: articles(:one).id
       assert_redirected_to root_path
@@ -40,6 +44,7 @@ class ArticlesControllerTest < ActionController::TestCase
   end
 
   test "should update article and redirect to article path" do
+    authenticate_with_http_basic
     article = articles(:one)
     new_title = "This is new title"
     new_body = "And this is new body"
