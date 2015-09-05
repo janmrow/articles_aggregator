@@ -1,8 +1,7 @@
 class ArticlesController < ApplicationController
 
-  USERS = { "admin" => "admin" }
-
-  before_action :authenticate, except: [ :index, :show ]
+  http_basic_authenticate_with name: "admin", password: "admin", except: [ :index, :show ]
+  
   def index
     @articles = Article.all.reverse
   end
@@ -50,12 +49,6 @@ class ArticlesController < ApplicationController
 
     def article_params
       params.require(:article).permit(:title, :body)
-    end
-
-    def authenticate
-      authenticate_or_request_with_http_digest do |username|
-        USERS[username]
-      end
     end
 
 end
